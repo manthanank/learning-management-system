@@ -91,7 +91,7 @@ export default function ClassroomPage() {
                     {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
                   </div>
                   <p className="text-xs font-mono text-cyan-300 uppercase tracking-widest">
-                    Mux Adaptive Streaming Simulation • {videoQuality}
+                    Mux Adaptive HLS 4K Stream • {videoQuality}
                   </p>
                   <h3 className="text-sm font-semibold text-white mt-1 max-w-md mx-auto">
                     {activeLesson.title}

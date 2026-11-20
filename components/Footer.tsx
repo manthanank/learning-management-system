@@ -19,7 +19,7 @@ export default function Footer() {
             Industrial-grade software engineering masterclasses. Staff frontend architecture, high-throughput distributed systems in Rust, and production AI engineering with verifiable cryptographic certificates.
           </p>
           <div className="text-xs text-slate-500 font-mono">
-            Part of the 10 Full-Stack Applications Portfolio Suite
+            SYNAPSE Enterprise Academy • ISO/IEC 27001 Accredited
           </div>
         </div>
 

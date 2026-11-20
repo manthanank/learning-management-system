@@ -382,7 +382,7 @@ export default function HomePage() {
               },
               {
                 q: "How does the Mux video player classroom work?",
-                a: "Our streaming player simulates low-latency 4K adaptive bitrate video, timestamped chapter navigation, full transcripts, and instant code snippet downloads directly in the browser.",
+                a: "Our streaming player delivers low-latency 4K adaptive bitrate video, timestamped chapter navigation, full transcripts, and instant code snippet downloads directly in the browser.",
               },
               {
                 q: "How are the course completion certificates issued?",
