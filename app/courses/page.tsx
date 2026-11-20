@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { COURSES, Course } from "@/lib/data";
 import {
@@ -15,12 +15,24 @@ import {
 } from "lucide-react";
 
 export default function CoursesPage() {
+  const [courses, setCourses] = useState<Course[]>(COURSES);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedLevel, setSelectedLevel] = useState<string>("all");
 
+  useEffect(() => {
+    fetch("/api/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.courses && Array.isArray(data.courses)) {
+          setCourses(data.courses);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const filteredCourses = useMemo(() => {
-    return COURSES.filter((course) => {
+    return courses.filter((course) => {
       if (selectedCategory !== "all" && course.category !== selectedCategory) return false;
       if (selectedLevel !== "all" && course.level !== selectedLevel) return false;
       if (searchQuery.trim()) {
