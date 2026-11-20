@@ -41,3 +41,4 @@ Synapse LMS is an educational portal built with Next.js 15, TypeScript, and Tail
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000).
+
