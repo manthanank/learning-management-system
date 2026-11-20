@@ -1,0 +1,9 @@
+# Learning Management System (LMS) Architecture & Cursor Rules
+
+## Stack & Principles
+- Next.js 15 App Router, TypeScript (Strict Mode), Tailwind CSS, Lucide Icons, Framer Motion, Recharts.
+- PostgreSQL Prisma ORM relational schema for Courses, Modules, Lessons, Enrollments, Quizzes, and Certificates.
+- Mux Video Player simulation with playback rate, 4K quality, interactive chapters, and lesson completion trackers.
+- Interactive Knowledge Check Quiz engine with scoring and cryptographic certificate generation.
+- Responsive UX across mobile (<640px), tablet (640px-1024px), and desktop (>1024px).
+- Web Analytics integrated via @vercel/analytics and @vercel/speed-insights.
