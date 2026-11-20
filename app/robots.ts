@@ -10,3 +10,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: "https://learning-management-system-nu-rose.vercel.app/sitemap.xml",
   };
 }
+

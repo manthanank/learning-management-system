@@ -76,3 +76,4 @@ model Certificate {
   issueDate        DateTime @default(now())
   verificationHash String
 }
+

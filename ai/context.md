@@ -19,3 +19,4 @@ A high-production developer masterclass academy platform built with Next.js 15, 
 - Enrollment: id, userId, courseId, progressPercent, isCompleted, enrolledAt.
 - Quiz: id, title, courseId, questions, passingScore.
 - Certificate: id, credentialId, studentName, courseTitle, issueDate, verificationHash.
+

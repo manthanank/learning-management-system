@@ -331,3 +331,4 @@ export const SKILL_MASTERY = [
   { name: "AI Engineering", score: 85, fill: "#8b5cf6" },
   { name: "Cloud & DevOps", score: 70, fill: "#f59e0b" },
 ];
+
