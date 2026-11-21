@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { COURSES, Course } from "@/lib/data";
+import { prisma, isDatabaseConfigured } from "@/lib/prisma";
 
 let serverCourses: Course[] = [...COURSES];
 
@@ -9,7 +10,44 @@ export async function GET(request: Request) {
   const level = searchParams.get("level");
   const query = searchParams.get("q")?.toLowerCase();
 
-  let filtered = [...serverCourses];
+  let courses = [...serverCourses];
+
+  if (isDatabaseConfigured()) {
+    try {
+      const dbCourses = await prisma.course.findMany({
+        include: { modules: { include: { lessons: true } } },
+        orderBy: { createdAt: "desc" },
+      });
+      if (dbCourses && dbCourses.length > 0) {
+        courses = dbCourses.map((c) => ({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          subtitle: c.subtitle,
+          category: "frontend",
+          level: c.level,
+          duration: `${c.durationHours} Hours`,
+          lessonsCount: c.modules.reduce((acc, m) => acc + m.lessons.length, 0) || 12,
+          studentsCount: c.studentsCount,
+          rating: c.rating,
+          reviewsCount: 140,
+          price: c.price,
+          originalPrice: Math.round(c.price * 1.5),
+          thumbnail: c.thumbnail,
+          instructor: {
+            name: c.instructorName,
+            title: "Principal Architect",
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
+          },
+          skills: ["Next.js", "TypeScript", "React"],
+        }));
+      }
+    } catch (e) {
+      console.warn("[Courses API] Database query error, using in-memory:", (e as Error).message);
+    }
+  }
+
+  let filtered = [...courses];
 
   if (category && category !== "all") {
     filtered = filtered.filter((c) => c.category === category);
