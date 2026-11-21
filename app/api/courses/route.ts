@@ -24,8 +24,8 @@ export async function GET(request: Request) {
           slug: c.slug,
           title: c.title,
           subtitle: c.subtitle,
-          category: "frontend",
-          level: c.level,
+          category: "frontend" as const,
+          level: (c.level === "ADVANCED" ? "Advanced" : "Intermediate") as Course["level"],
           duration: `${c.durationHours} Hours`,
           lessonsCount: c.modules.reduce((acc, m) => acc + m.lessons.length, 0) || 12,
           studentsCount: c.studentsCount,
@@ -36,10 +36,23 @@ export async function GET(request: Request) {
           thumbnail: c.thumbnail,
           instructor: {
             name: c.instructorName,
-            title: "Principal Architect",
+            role: "Principal Architect",
+            company: "Enterprise Ecosystem",
             avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
           },
           skills: ["Next.js", "TypeScript", "React"],
+          modules: c.modules.map((m) => ({
+            id: m.id,
+            title: m.title,
+            lessons: m.lessons.map((l) => ({
+              id: l.id,
+              title: l.title,
+              duration: `${l.durationMinutes}m`,
+              videoMinutes: l.durationMinutes,
+              videoUrl: l.videoUrl,
+              summary: l.title,
+            })),
+          })),
         }));
       }
     } catch (e) {
